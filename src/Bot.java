@@ -6,7 +6,7 @@ import javax.security.auth.login.LoginException;
 
 public class Bot {
     public static JDA jda ;
-    public final static String prefix = ":t" ;
+    public final static String prefix = ":c" ;
     public static void main(String[] args) throws LoginException {
         jda = JDABuilder.createDefault("<Insert token here>") .build();
         jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
