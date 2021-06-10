@@ -25,12 +25,11 @@ public class Commands extends ListenerAdapter {
         // ends the stopwatch ( offset of 2 for the time taken to type ) 
         else if  ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "n") ) {
             String n = Objects.requireNonNull(event.getMember()).getEffectiveName() ;
-            if (timestart.get(n) == null || !(timestart.get(n))) {
+            if (timestart.get(n) == null) {
                 event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", start the stopwatch first").queue();
             }
             else {
                 double time = ((double) System.currentTimeMillis() - times.get(n)) / 1000;
-                timestart.remove(n);
                 EmbedBuilder info = new EmbedBuilder();
                 info.setColor(0Xa80d2c);
                 info.addField(n + "'s time : ", String.valueOf(abs(time)) + "seconds", true);
