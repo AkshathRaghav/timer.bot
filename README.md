@@ -8,4 +8,7 @@ Java files for timer and stopwatch functionality in Discord bots
 * If you want to change the prefix, go to [Bot](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Bot.java) class and change the prefix constant 
 * The commands :t s and :t n are fairly quick for me to type out, but in case you wish to have a different command, go to [Commands](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Commands.java) class and change the .equalsIgnoreCase() at lines 18, 25, and 40 ( stopwatch offset can be added at line 36, but time is only off by about a few milliseconds )
 * If you wish to change the task which the timer does, then replace lines 44-46 in [Commands](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Commands.java) 
+
+#### Remember, this repo just has files for the functionality. It's not a bot in itself. 
+#### Copy, Paste, Modify!
 <hr>
