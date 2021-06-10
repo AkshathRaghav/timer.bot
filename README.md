@@ -6,6 +6,6 @@ Java files for timer and stopwatch functionality for making Discord bots
 * Now, after making the folder for your classes, just add the two files above to it. 
 * Make sure to add the token from the Discord Developer Portal ( Applications --> Bot --> Copy Token ) where indicated in the Bot class
 * If you want to change the prefix, go to [Bot](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Bot.java) class and change the prefix constant 
-* The commands :c s and :c n are fairly quick for me to type out, but in case you wish to have more of a stopwatch offset, or a different command, go to [Commands](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Commands.java) class and change the .equalsIgnoreCase() at lines 18, 25, and 40
+* The commands :c s and :c n are fairly quick for me to type out, but in case you wish to have a different command, go to [Commands](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Commands.java) class and change the .equalsIgnoreCase() at lines 18, 25, and 40 ( stopwatch offset can be added at lines 36 )
 * If you wish to change the task which the timer does, then replace lines 44-46 in [Commands](https://github.com/AkshathRaghav/timer.bot/blob/main/src/Commands.java) 
 <hr>
