@@ -1,5 +1,5 @@
 # timer.bot ⏲️
-Java files for timer and stopwatch functionality for making Discord bots
+Java files for timer and stopwatch functionality in Discord bots
 
 * Watch this [tutorial](https://www.youtube.com/watch?v=jGrD8AZfTig) (till 08:00) to set your project up in Eclipse/IntelliJ 
 * Since many things in JDA have been deprecated since this video was made, dont copy code from it
