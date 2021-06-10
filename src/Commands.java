@@ -4,10 +4,11 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import java.util.* ;
 import java.awt.event.*;
 import javax.swing.Timer;
+import static java.lang.Math.abs;
 
 public class Commands extends ListenerAdapter {
-    Dictionary times = new Hashtable();
-    Dictionary timestart = new Hashtable();
+    Dictionary<String, Long> times = new Hashtable<String, Long>();
+    Dictionary<String, Boolean> timestart = new Hashtable<>();
     ArrayList<String> timerlist = new ArrayList<>() ;
 
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
@@ -15,30 +16,33 @@ public class Commands extends ListenerAdapter {
         String[] arg = event.getMessage().getContentRaw().split(" ");
         
         // starts the stopwatch 
-        if  ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "-s") ) {
+        if  ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "s") ) {
             times.put(Objects.requireNonNull(event.getMember()).getEffectiveName(), System.currentTimeMillis()) ;
             timestart.put(Objects.requireNonNull(event.getMember()).getEffectiveName(), true) ;
 
         }
 
         // ends the stopwatch ( offset of 2 for the time taken to type ) 
-        else if  ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "-n") ) {
-            if (timestart.get(Objects.requireNonNull(event.getMember()).getEffectiveName()) == null || (boolean) timestart.get(Objects.requireNonNull(event.getMember()).getEffectiveName()) == false) {
+        else if  ( arg.length == 2 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "n") ) {
+            String n = Objects.requireNonNull(event.getMember()).getEffectiveName() ;
+            if (timestart.get(n) == null || !(timestart.get(n))) {
                 event.getChannel().sendMessage("Hey " + event.getMember().getAsMention() + ", start the stopwatch first").queue();
             }
             else {
-                double time = ((double) System.currentTimeMillis() - (long) times.get(event.getMember().getEffectiveName())) / 1000;
-                timestart.put(Objects.requireNonNull(event.getMember()).getEffectiveName(), false);
+                double time = ((double) System.currentTimeMillis() - times.get(n)) / 1000;
+                timestart.remove(n);
                 EmbedBuilder info = new EmbedBuilder();
                 info.setColor(0Xa80d2c);
-                info.addField(event.getMember().getEffectiveName() + "'s time : ", String.valueOf(time - 2) + "seconds", true);
+                info.addField(n + "'s time : ", String.valueOf(abs(time)) + "seconds", true);
                 event.getChannel().sendMessage(info.build()).queue();
+                timestart.remove(n);
+                times.remove(n) ; 
                 info.clear();
             }
 
         }
         else if ( arg.length == 3 && (arg[0] + arg[1]).equalsIgnoreCase(Bot.prefix + "-t")  ) {
-            timerlist.add(event.getMember().getEffectiveName()) ;
+            timerlist.add(Objects.requireNonNull(event.getMember()).getEffectiveName()) ;
             ActionListener taskPerformer = new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
                     // You can change this to do whatever you want 
